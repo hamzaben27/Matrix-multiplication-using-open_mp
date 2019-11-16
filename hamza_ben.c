@@ -74,16 +74,19 @@ printf("matrice A \n") ;
     printf("temps parallele=%f\n", (double)(fin-debut)/CLOCKS_PER_SEC);
         
         //calcule sequenciel du matrice C 
-        debut1=clock();
-        for ( int i = 0;i < M; i++)
-        {
-        for (int j = 0; j < M; j++) 
-            {
-		 for (int k = 0; k < M; k++)
-                C[i][j] += A[i][k] * B[k][j]; 
-            }
-
-        }
+         debut1=clock();
+   for (int k = 0; k < M; ++k)
+   {
+       for (int i = 0; i < M; ++i)
+       {
+          int MAT=0;
+          for (int j = 0; j < M; ++j)
+          {    
+             MAT+=A[k][j]*B[j][i];
+          }
+          C[k][i]=MAT;
+       } 
+   } 
         
         fin1=clock();
 
